@@ -1,0 +1,2 @@
+pkill go-webservice
+exit 0

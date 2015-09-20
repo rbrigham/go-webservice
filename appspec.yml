@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+files:
+  - source: GoWebService
+    destination: /usr/local/bin/
+permissions:
+  - object: /usr/local/bin/GoWebService
+    owner: root
+    group: wheel
+    mode: 755
+    type:
+      - file
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 60
+      runas: root
+  BeforeInstall:
+    - location: scripts/install_dependencies
+      timeout: 120
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server
+      timeout: 60
+      runas: root
