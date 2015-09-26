@@ -72,12 +72,14 @@ func ParseArgs (req *http.Request) (float64, float64, error) {
 }
 
 func RespondError (res http.ResponseWriter, message string) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	res.Header().Set("Content-Type", "text/plain")
 	res.WriteHeader(http.StatusBadRequest)
 	fmt.Fprintln(res, message)
 }
 
 func RespondResult (res http.ResponseWriter, result float64) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	res.Header().Set("Content-Type", "text/plain")
 	res.WriteHeader(http.StatusOK)
 	fmt.Fprintln(res, result)
