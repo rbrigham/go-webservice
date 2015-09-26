@@ -62,11 +62,11 @@ func Divide(res http.ResponseWriter, req *http.Request) {
 func ParseArgs (req *http.Request) (float64, float64, error) {
 	a, err := strconv.ParseFloat(req.FormValue("a"), 64)
 	if err != nil {
-		return 0, 0, errors.New("bad first argument: " + a)
+		return 0, 0, errors.New("bad first argument: " + req.FormValue("a"))
 	}
 	b, err := strconv.ParseFloat(req.FormValue("b"), 64)
 	if err != nil {
-		return 0, 0, errors.New("bad second argument: " + b)
+		return 0, 0, errors.New("bad second argument: " + req.FormValue("b"))
 	}
 	return a, b, nil
 }
